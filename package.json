@@ -17,7 +17,6 @@
     "prebuild": "node scripts/prebuild.mjs",
     "build": "yarn clean && yarn prebuild && yarn rollup -c",
     "clean": "rimraf dist",
-    "prepublishOnly": "echo \"\nPlease use ./scripts/publish instead\n\" && exit 1",
     "prettier": "prettier './**/*.{js,ts,md,html,css}' --write",
     "prettier-check": "prettier './**/*.{js,ts,md,html,css}' --check"
   },
