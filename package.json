@@ -1,0 +1,72 @@
+{
+  "name": "@openziti/ziti-sdk-browser",
+  "version": "0.1.0",
+  "description": "Ziti SDK for the Browser",
+  "repository": "github:openziti/ziti-sdk-browser",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "jsnext:main": "lib/index.mjs",
+  "types": "dist/typings/index.d.ts",
+  "scripts": {
+    "test": "yarn lint && yarn test:unit && yarn test:package-types && yarn typecheck",
+    "test:unit": "jest",
+    "test:package-types": "attw --pack . --entrypoints ./lib",
+    "test:types": "zx ./tests/types/scripts/test.mjs",
+    "lint": "eslint '{src,types}/**/*.{ts,js}' && yarn prettier-check",
+    "typecheck": "tsc",
+    "prebuild": "node scripts/prebuild.mjs",
+    "build": "yarn clean && yarn prebuild && yarn rollup -c",
+    "clean": "rimraf dist",
+    "prepublishOnly": "echo \"\nPlease use ./scripts/publish instead\n\" && exit 1",
+    "prettier": "prettier './**/*.{js,ts,md,html,css}' --write",
+    "prettier-check": "prettier './**/*.{js,ts,md,html,css}' --check"
+  },
+  "keywords": [
+    "OpenZiti",
+    "ziti-sdk-browser"
+  ],
+  "author": "NetFoundry (https://www.netfoundry.io)",
+  "license": "Apache-2.0",
+  "homepage": "https://openziti.io/docs/reference/developer/sdk",
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12.16"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.1",
+    "@babel/core": "^7.27.3",
+    "@babel/preset-env": "^7.27.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^2.3.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/jest": "^24.0.25",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "conditional-type-checks": "^1.0.5",
+    "eslint": "^9.27.0",
+    "eslint-config-prettier": "^6.8.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.6.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "rimraf": "^2.6.2",
+    "rollup": "^2.79.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.3.0",
+    "typescript": "~4.8.4",
+    "zx": "^4.2.0"
+  },
+  "packageManager": "yarn@4.0.2+sha512.4e502bea682e7d8004561f916f1da2dfbe6f718024f6aa50bf8cd86f38ea3a94a7f1bf854a9ca666dd8eafcfb8d44baaa91bf5c7876e79a7aeac952c332f0e88",
+  "dependencies": {
+    "@openziti/ziti-browzer-core": "^0.65.0"
+  }
+}

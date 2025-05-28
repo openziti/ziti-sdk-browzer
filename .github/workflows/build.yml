@@ -1,0 +1,84 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'package.json'
+      - 'CHANGELOG.md'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  
+  build:
+
+    runs-on: ubuntu-latest
+  
+    steps:
+  
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Enable Corepack
+      run: corepack enable
+
+    - name: Prepare Yarn 4
+      run: corepack prepare yarn@4.0.2 --activate
+
+    - name: Verify Yarn version
+      run: yarn -v
+
+    - name: Set up Node.js with Corepack
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22   # Or another supported version
+        cache: 'yarn'      # Caches Yarn dependencies
+
+    - name: Bump semver
+      if: github.ref == 'refs/heads/main'
+      uses: TriPSs/conventional-changelog-action@v3
+      with:
+        github-token: ${{ secrets.GH_ACTION }}
+        git-message: 'chore(release): {version}'
+        preset: 'angular'
+        tag-prefix: 'v'
+        output-file: 'CHANGELOG.md'
+        skip-on-empty: true # do not alter semver when we push 'chore: ...' commits
+        release-count: 0 # ensure changelog is generated to contain ALL updates
+
+    - name: Pull newly bumped semver
+      if: github.ref == 'refs/heads/main'
+      run: git pull
+
+    - name: Setup .npmrc
+      if: github.ref == 'refs/heads/main'
+      # Setup .npmrc file to prepare for possible publish to npm
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22   # Or another supported version
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install
+      run: yarn install --immutable
+
+    - name: Lint
+      run: yarn run lint
+
+    - name: Typecheck
+      run: yarn run typecheck
+
+    # - name: test:unit
+      # run: yarn run test:unit
+
+    - name: Build
+      run: yarn run build && yarn run test:package-types
+
+    # - name: test:types
+    #   run: yarn run test:types
+
+    - name: Publish production release
+      if: github.ref == 'refs/heads/main'
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
