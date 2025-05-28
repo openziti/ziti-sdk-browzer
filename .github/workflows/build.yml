@@ -77,8 +77,8 @@ jobs:
     # - name: test:types
     #   run: yarn run test:types
 
-    # - name: Publish production release
-    #   if: github.ref == 'refs/heads/main'
-    #   run: npm publish --access public
-    #   env:
-    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Publish production release
+      if: github.ref == 'refs/heads/main'
+      run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
