@@ -1,0 +1,46 @@
+{
+  "name": "rollup",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "rimraf dist && rollup --bundleConfigAsCjs -c rollup.config.js && node server",
+    "rollup": "rollup --bundleConfigAsCjs -c rollup.config.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@openziti/ziti-sdk-browser": "^0.1.0",
+    "express": "^4.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/runtime": "^7.27.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^11.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-url": "^8.0.2",
+    "@rollup/plugin-wasm": "^6.2.2",
+    "esbuild": "^0.25.4",
+    "rimraf": "^3.0.0",
+    "rollup": "^4.41.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-esbuild": "^6.2.1"
+  },
+  "resolutions": {
+    "@openziti/ziti-sdk-browser": "portal:/Users/curt/Repos/nf/github/ziti-sdk-browser",
+    "@openziti/ziti-browzer-core": "portal:/Users/curt/Repos/nf/github/ziti-browzer-core"
+  }
+}
