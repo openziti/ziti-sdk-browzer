@@ -14,19 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { PopupConfigOptions } from './global';
-
 /**
  * @ignore
  */
 export const DEFAULT_AUTHORIZE_TIMEOUT_IN_SECONDS = 60;
-
-/**
- * @ignore
- */
-export const DEFAULT_POPUP_CONFIG_OPTIONS: PopupConfigOptions = {
-  timeoutInSeconds: DEFAULT_AUTHORIZE_TIMEOUT_IN_SECONDS,
-};
 
 /**
  * @ignore

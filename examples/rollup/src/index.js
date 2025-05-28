@@ -27,14 +27,12 @@ let zitiServiceName = 'browzermost.tools.netfoundry.io';
  * using the SDK to perform certain operations
  */
 const actions = [
-
   {
     id: 'load-wasm',
     label: 'Load WASM',
     handler: async () => {
-
       /**
-       * 
+       *
        */
       const wasm = await zitiBrowserClient.getWASMInstance();
 
@@ -46,14 +44,14 @@ const actions = [
     id: 'set-token',
     label: 'Set Access Token',
     handler: async () => {
+      let access_token =
+        'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im5ETmFMd1c1dVR4b0haNXZMaVR1aSJ9.eyJlbWFpbCI6ImN1cnQudHVkb3JAbmV0Zm91bmRyeS5pbyIsImlzcyI6Imh0dHBzOi8vZGV2LWphMjhvanprLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExMjU0MjM0ODc2MjU1NDAwNzE3NyIsImF1ZCI6WyJodHRwczovL2FwcC5tYXR0ZXJtb3N0LmJyb3d6ZXIuY2xvdWR6aXRpLmlvIiwiaHR0cHM6Ly9kZXYtamEyOG9qemsudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTc0ODQ0Mzg0MiwiZXhwIjoxNzQ4NTMwMjQyLCJzY29wZSI6Im9wZW5pZCBlbWFpbCIsImF6cCI6IkE3V0FzSHk3WnQxTXZLeEFLYXV0MXVnSFRxcXdTZ1h5In0.FK9n_BfzWaNUiPSFmaILFwY0Y0tm45rp34hU4uDvtduoWIYJoq-DRCMfV4HuMI4VY1t1lL_79R5G849G5uEjlu6pfgySBmztL-NgLoyN5XSM-DETL1rL5Mkd1Y6AxDLtfYv8I_XCTFJ4698MD8tdo5aSfgZcbUg5hNY9WggjFxIOB_YQTbIno-uSKLu_e5l8Q-KdYqAvqSgR3nXUgh_PqngMnxs0KDsmfi0kKBcvQPxksU4th3DH7MiB5vMAGAv3rhEArga1tAyCy55fvvFSU_VOq4oCCQ6I3fch8Lfdt8wREcJtvZ7_62G36HLAyG3Oki5srUsEldykBBdY0YZz_Q';
 
-      let access_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im5ETmFMd1c1dVR4b0haNXZMaVR1aSJ9.eyJlbWFpbCI6ImN1cnQudHVkb3JAbmV0Zm91bmRyeS5pbyIsImlzcyI6Imh0dHBzOi8vZGV2LWphMjhvanprLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDExMjU0MjM0ODc2MjU1NDAwNzE3NyIsImF1ZCI6WyJodHRwczovL2FwcC5tYXR0ZXJtb3N0LmJyb3d6ZXIuY2xvdWR6aXRpLmlvIiwiaHR0cHM6Ly9kZXYtamEyOG9qemsudXMuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTc0ODQ0Mzg0MiwiZXhwIjoxNzQ4NTMwMjQyLCJzY29wZSI6Im9wZW5pZCBlbWFpbCIsImF6cCI6IkE3V0FzSHk3WnQxTXZLeEFLYXV0MXVnSFRxcXdTZ1h5In0.FK9n_BfzWaNUiPSFmaILFwY0Y0tm45rp34hU4uDvtduoWIYJoq-DRCMfV4HuMI4VY1t1lL_79R5G849G5uEjlu6pfgySBmztL-NgLoyN5XSM-DETL1rL5Mkd1Y6AxDLtfYv8I_XCTFJ4698MD8tdo5aSfgZcbUg5hNY9WggjFxIOB_YQTbIno-uSKLu_e5l8Q-KdYqAvqSgR3nXUgh_PqngMnxs0KDsmfi0kKBcvQPxksU4th3DH7MiB5vMAGAv3rhEArga1tAyCy55fvvFSU_VOq4oCCQ6I3fch8Lfdt8wREcJtvZ7_62G36HLAyG3Oki5srUsEldykBBdY0YZz_Q';
-      
       /**
-       * 
+       *
        */
-      const result = zitiBrowserClient.setAccessToken( access_token );
-      
+      const result = zitiBrowserClient.setAccessToken(access_token);
+
       console.log('[setAccessToken result]', result);
     },
   },
@@ -62,9 +60,8 @@ const actions = [
     id: 'controller-auth',
     label: 'Controller Auth (getFreshAPISession)',
     handler: async () => {
-
       /**
-       * 
+       *
        */
       const result = await zitiBrowserClient.getFreshAPISession();
 
@@ -76,9 +73,8 @@ const actions = [
     id: 'fetch-services',
     label: 'Fetch Services',
     handler: async () => {
-
       /**
-       * 
+       *
        */
       const result = await zitiBrowserClient.fetchServices();
 
@@ -90,9 +86,8 @@ const actions = [
     id: 'enroll',
     label: 'Enroll (create ephemeral x509 Cert)',
     handler: async () => {
-
       /**
-       * 
+       *
        */
       const result = await zitiBrowserClient.enroll();
 
@@ -104,12 +99,10 @@ const actions = [
     id: 'print-ephemeralcert',
     label: 'Print Cert (print ephemeral x509 Cert)',
     handler: async () => {
-
       /**
-       * 
+       *
        */
       await zitiBrowserClient.printEphemeralCert();
-
     },
   },
 
@@ -117,17 +110,19 @@ const actions = [
     id: 'http-fetch-get',
     label: 'Do HTTP Fetch (GET)',
     handler: async () => {
-
       /**
-       * 
+       *
        */
-      const response = await zitiBrowserClient.fetch(`https://${zitiServiceName}/`, {
-        method: 'GET',
-        serviceName: `${zitiServiceName}`,
-      });
+      const response = await zitiBrowserClient.fetch(
+        `https://${zitiServiceName}/`,
+        {
+          method: 'GET',
+          serviceName: `${zitiServiceName}`,
+        }
+      );
 
       const data = await response.text();
-    
+
       console.log('[HTTP Fetch result]', data);
     },
   },
@@ -136,26 +131,28 @@ const actions = [
     id: 'http-fetch-post',
     label: 'Do HTTP Fetch (POST)',
     handler: async () => {
-
       /**
-       * 
+       *
        */
-      const response = await zitiBrowserClient.fetch(`https://${zitiServiceName}/api/v4/users/login`, {
-        method: 'POST',
-        serviceName: `${zitiServiceName}`,
-        headers: {
-          'content-type': 'application/json;charset=UTF-8',
-        },
-        body: JSON.stringify({
-          login_id: 'curt.tudor@netfoundry.io',
-          password: 'bogusPswd',
-          token:    '',
-          deviceId: ''
-        }),
-      });
+      const response = await zitiBrowserClient.fetch(
+        `https://${zitiServiceName}/api/v4/users/login`,
+        {
+          method: 'POST',
+          serviceName: `${zitiServiceName}`,
+          headers: {
+            'content-type': 'application/json;charset=UTF-8',
+          },
+          body: JSON.stringify({
+            login_id: 'curt.tudor@netfoundry.io',
+            password: 'bogusPswd',
+            token: '',
+            deviceId: '',
+          }),
+        }
+      );
 
       const data = await response.json();
-    
+
       console.log('[HTTP Fetch (POST) result]', data);
     },
   },
@@ -175,15 +172,13 @@ function addButton(form, { id, label }) {
  * The main async IIFE that runs the demo
  */
 (async () => {
-
   const rootNode = document.getElementById('root');
   const form = document.createElement('form');
-  form.style.display = 'flex';  // stack buttons vertically
+  form.style.display = 'flex'; // stack buttons vertically
   form.style.flexDirection = 'column';
   form.style.gap = '8px';
   rootNode.appendChild(form);
 
-  
   // Add buttons to the DOM
   actions.forEach((action) => addButton(form, action));
 
@@ -191,28 +186,25 @@ function addButton(form, { id, label }) {
    * Instantiate the Client for the Ziti SDK
    */
   zitiBrowserClient = await createZitiBrowserClient({
-
-    logLevel:       'trace',      // select your console logLevel (default is 'warn')
-    logPrefix:      'Curt_Demo',  // specify whatever prefix you want
+    logLevel: 'trace', // select your console logLevel (default is 'warn')
+    logPrefix: 'Curt_Demo', // specify whatever prefix you want
 
     authorizationParams: {
-      controllerHost: 'cb2c8d5d-e747-4292-ad8e-e82eb35a3087-p.production.netfoundry.io',
+      controllerHost:
+        'cb2c8d5d-e747-4292-ad8e-e82eb35a3087-p.production.netfoundry.io',
       controllerPort: 443,
     },
-
   });
-  
 
   // Handle button clicks via table lookup
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const clickedId = e.submitter?.id;
-    const action = actions.find(a => a.id === clickedId);
+    const action = actions.find((a) => a.id === clickedId);
     if (action?.handler) {
       await action.handler();
     } else {
       console.warn(`No handler found for button ID: ${clickedId}`);
     }
   });
-
 })();

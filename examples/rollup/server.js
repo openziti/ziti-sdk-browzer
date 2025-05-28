@@ -21,12 +21,12 @@ const port = 3000;
 
 // Middleware to set correct MIME type for .wasm
 app.use((req, res, next) => {
-    if (req.path.endsWith('.wasm')) {
-      res.type('application/wasm');
-    }
-    next();
-  });
-  
+  if (req.path.endsWith('.wasm')) {
+    res.type('application/wasm');
+  }
+  next();
+});
+
 app.use(express.static('dist'));
 app.use(express.static('public'));
 

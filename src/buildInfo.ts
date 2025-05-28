@@ -1,6 +1,6 @@
 /* eslint-disable */
 const buildInfo = {
-    sdkRevision: 'b83e9eea815001d14e27cc7ed1432e91f9cf8ca1',
+    sdkRevision: '774fe1fbb311a4ce562044f6e8fcf1693d56e9c6',
     sdkBranch: 'initial-commit'
 };
 

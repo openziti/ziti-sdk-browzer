@@ -5,7 +5,6 @@ import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
 
-
 import pkg from './package.json';
 
 const PLUGINS = [
@@ -17,18 +16,18 @@ const PLUGINS = [
     onResolved: (id) => {
       console.log('Resolved:', id);
       return null; // keep default behavior
-    }  
-  }),  
+    },
+  }),
   typescript({
     tsconfig: './tsconfig.json',
-    exclude: ['**/*.test.ts']
+    exclude: ['**/*.test.ts'],
   }),
   // ts({
   //   tsconfigOverride: {exclude: ['**/*.test.ts']},
   // }),
   babel({
     extensions: ['.ts', '.js', '.tsx', '.jsx'],
-    compact: true, 
+    compact: true,
   }),
   json(),
   replace({
@@ -41,8 +40,8 @@ export default [
   {
     input: 'src/index.ts',
     output: [
-      {file: 'dist/index.js', format: 'cjs'},
-      {file: 'dist/index.mjs', format: 'es'},
+      { file: 'dist/index.js', format: 'cjs' },
+      { file: 'dist/index.mjs', format: 'es' },
     ],
     plugins: PLUGINS,
   },

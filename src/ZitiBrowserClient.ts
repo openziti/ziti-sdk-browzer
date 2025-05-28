@@ -19,10 +19,10 @@ import { ZitiBrowzerCore } from '@openziti/ziti-browzer-core';
 import {
   InMemoryCache,
   ICache,
-  CacheKey,
+  // CacheKey,
   CacheManager,
   CacheEntry,
-  IdTokenEntry,
+  // IdTokenEntry,
   CACHE_KEY_ID_TOKEN_SUFFIX,
   DecodedToken,
 } from './cache';
@@ -35,12 +35,9 @@ import {
   ZitiBrowserClientOptions,
   AuthorizationParams,
   CacheLocation,
-  User,
-  IdToken,
-  GetTokenSilentlyVerboseResponse,
+  // User,
+  // IdToken,
 } from './global';
-
-import { getUniqueScopes } from './scope';
 
 import { cacheFactory } from './ZitiBrowserClient.utils';
 
@@ -61,7 +58,6 @@ declare global {
 export class ZitiBrowserClient {
   private readonly cacheManager: CacheManager;
   private readonly nowProvider: () => number | Promise<number>;
-  private readonly scope: string;
   private readonly zitiBrowzerCore: ZitiBrowzerCore;
   // eslint-disable-next-line
   private readonly zitiContext: any;
@@ -75,15 +71,12 @@ export class ZitiBrowserClient {
   };
 
   private readonly defaultOptions: Partial<ZitiBrowserClientOptions> = {
-    useRefreshTokensFallback: false,
-
     logLevel: 'Warn',
 
     //
     authorizationParams: {
       controllerHost: 'ctrl.ziti.netfoundry.io',
       controllerPort: 1280,
-      scope: 'email',
     },
   };
 
@@ -140,22 +133,16 @@ export class ZitiBrowserClient {
       cache = cacheFactory(cacheLocation)();
     }
 
-    // Construct the scopes based on the following:
-    // 1. Always include `openid`
-    // 2. Include the scopes provided in `authorizationParams. This defaults to `profile email`
-    // 3. Add `offline_access` if `useRefreshTokens` is enabled
-    this.scope = getUniqueScopes(
-      'openid',
-      this.options.authorizationParams.scope,
-      this.options.useRefreshTokens ? 'offline_access' : ''
-    );
-
     this.nowProvider = this.options.nowProvider || DEFAULT_NOW_PROVIDER;
 
     this.cacheManager = new CacheManager(
       cache,
       !cache.allKeys
-        ? new CacheKeyManifest(cache, this.options.clientId)
+        ? new CacheKeyManifest(
+            cache,
+            this.options.authorizationParams.controllerHost ||
+              'ziti-sdk-browser'
+          )
         : undefined,
       this.nowProvider
     );
@@ -264,49 +251,6 @@ export class ZitiBrowserClient {
 
   /**
    * ```js
-   * const claims = await zitiBrowserClient.getIdTokenClaims();
-   * ```
-   *
-   * Returns all claims from the id_token if available.
-   */
-  public async getIdTokenClaims(): Promise<IdToken | undefined> {
-    const cache = await this._getIdTokenFromCache();
-
-    return cache?.decodedToken?.claims;
-  }
-
-  /**
-   * ```js
-   * const isAuthenticated = await zitiBrowserClient.isAuthenticated();
-   * ```
-   *
-   * Returns `true` if there's valid information stored,
-   * otherwise returns `false`.
-   *
-   */
-  public async isAuthenticated() {
-    const user = await this.getUser();
-    return !!user;
-  }
-
-  /**
-   * ```js
-   * const user = await zitiBrowserClient.getUser();
-   * ```
-   *
-   * Returns the user information if available (decoded
-   * from the `id_token`).
-   *
-   * @typeparam TUser The type to return, has to extend {@link User}.
-   */
-  public async getUser<TUser extends User>(): Promise<TUser | undefined> {
-    const cache = await this._getIdTokenFromCache();
-
-    return cache?.decodedToken?.user as TUser;
-  }
-
-  /**
-   * ```js
    * await zitiBrowserClient.logout();
    * ```
    *
@@ -326,69 +270,12 @@ export class ZitiBrowserClient {
     });
 
     await this.cacheManager.setIdToken(
-      this.options.clientId,
+      this.options.authorizationParams.controllerHost || 'ziti-sdk-browser',
       entry.id_token,
       entry.decodedToken
     );
 
     await this.cacheManager.set(entryWithoutIdToken);
-  }
-
-  private async _getIdTokenFromCache() {
-    const audience = this.options.authorizationParams.audience || 'default';
-
-    const cache = await this.cacheManager.getIdToken(
-      new CacheKey({
-        clientId: this.options.clientId,
-        audience,
-        scope: this.scope,
-      })
-    );
-
-    const currentCache = this.userCache.get<IdTokenEntry>(
-      CACHE_KEY_ID_TOKEN_SUFFIX
-    ) as IdTokenEntry;
-
-    // If the id_token in the cache matches the value we previously cached in memory return the in-memory
-    // value so that object comparison will work
-    if (cache && cache.id_token === currentCache?.id_token) {
-      return currentCache;
-    }
-
-    this.userCache.set(CACHE_KEY_ID_TOKEN_SUFFIX, cache);
-    return cache;
-  }
-
-  private async _getEntryFromCache({
-    scope,
-    audience,
-    clientId,
-  }: {
-    scope: string;
-    audience: string;
-    clientId: string;
-  }): Promise<undefined | GetTokenSilentlyVerboseResponse> {
-    const entry = await this.cacheManager.get(
-      new CacheKey({
-        scope,
-        audience,
-        clientId,
-      }),
-      60 // get a new token if within 60 seconds of expiring
-    );
-
-    if (entry && entry.access_token) {
-      const { access_token, oauthTokenScope, expires_in } = entry as CacheEntry;
-      const cache = await this._getIdTokenFromCache();
-      return (
-        cache && {
-          id_token: cache.id_token,
-          access_token,
-          ...(oauthTokenScope ? { scope: oauthTokenScope } : null),
-          expires_in,
-        }
-      );
-    }
   }
 
   private _setAccessToken(token: string): boolean {

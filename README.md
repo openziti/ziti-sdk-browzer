@@ -24,6 +24,7 @@
 </p>
 
 ---
+
 [![Build](https://github.com/openziti/ziti-sdk-browser/workflows/Build/badge.svg?branch=main)]()
 [![Issues](https://img.shields.io/github/issues-raw/openziti/ziti-sdk-browser)]()
 [![npm version](https://badge.fury.io/js/@openziti%2Fziti-sdk-browser.svg)](https://badge.fury.io/js/@openziti%2Fziti-sdk-browser.svg)
@@ -34,13 +35,12 @@
 
 ---
 
-
 <br>
-
 
 # ziti-sdk-browser as a CommonJS module or ES module
 
-This package allows [ziti-sdk-browzer](https://openziti.io/docs/reference/developer/sdk/) to be
+This package allows
+[ziti-sdk-browzer](https://openziti.io/docs/reference/developer/sdk/) to be
 imported as a CommonJS module or ES module.
 
 ## Installation
@@ -61,28 +61,28 @@ yarn add @openziti/ziti-sdk-browzer
 
 ### `createZitiBrowserClient`
 
-This function returns a `Promise` that resolves with a newly created `ZitiBrowserClient`
-object once ziti-sdk-browzer has loaded. 
-If you call `createZitiBrowserClient` in a server environment (e.g. NodeJS) it will resolve to `null`.
+This function returns a `Promise` that resolves with a newly created
+`ZitiBrowserClient` object once ziti-sdk-browzer has loaded. If you call
+`createZitiBrowserClient` in a server environment (e.g. NodeJS) it will resolve
+to `null`.
 
 ```js
 import { createZitiBrowserClient } from '@openziti/ziti-sdk-browser';
 
 zitiBrowserClient = await createZitiBrowserClient({
-    logLevel:       'trace',  // select your console logLevel (default is 'warn')
-    logPrefix:      'MyApp',  // specify whatever prefix you want
-    authorizationParams: {
-        controllerHost: 'YOUR_ZITI_CONTROLLER_HOSTNAME',
-        controllerPort: 443,    // (default is 443)
-    },
+  logLevel: 'trace', // select your console logLevel (default is 'warn')
+  logPrefix: 'MyApp', // specify whatever prefix you want
+  authorizationParams: {
+    controllerHost: 'YOUR_ZITI_CONTROLLER_HOSTNAME',
+    controllerPort: 443, // (default is 443)
+  },
 });
-
 ```
 
 ## TypeScript support
 
-This package includes TypeScript declarations. We support projects
-using TypeScript versions >= 4.8.0
+This package includes TypeScript declarations. We support projects using
+TypeScript versions >= 4.8.0
 
 ## Documentation
 
