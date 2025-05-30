@@ -23,8 +23,8 @@ import './styles.css';
 
 let zitiBrowserClient;
 let zitiServiceName = 'YOUR_SERVICE_NAME';
-let accessToken     = 'YOUR_ACCESS_TOKEN';
-let controllerHost  = 'YOUR_ZITI_CONTROLLER_HOSTNAME';
+let accessToken = 'YOUR_ACCESS_TOKEN';
+let controllerHost = 'YOUR_ZITI_CONTROLLER_HOSTNAME';
 
 /**
  * Table of buttons and their click handlers that demonstrate
@@ -48,7 +48,6 @@ const actions = [
     id: 'set-token',
     label: 'Set Access Token',
     handler: async () => {
-
       /**
        *
        */
@@ -192,7 +191,7 @@ function addButton(form, { id, label }) {
     logPrefix: 'Curt_Demo', // specify whatever prefix you want
 
     authorizationParams: {
-      controllerHost: controllerHost
+      controllerHost: controllerHost,
     },
   });
 
