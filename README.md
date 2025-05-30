@@ -87,3 +87,4 @@ TypeScript versions >= 4.8.0
 ## Documentation
 
 - [ziti-sdk-browser Docs](https://openziti.io/docs)
+

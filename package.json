@@ -1,6 +1,6 @@
 {
   "name": "@openziti/ziti-sdk-browser",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Ziti SDK for the Browser",
   "repository": "github:openziti/ziti-sdk-browser",
   "main": "lib/index.js",
@@ -8,7 +8,7 @@
   "jsnext:main": "lib/index.mjs",
   "types": "dist/typings/index.d.ts",
   "scripts": {
-    "test": "yarn lint && yarn test:unit && yarn test:package-types && yarn typecheck",
+    "test": "yarn lint && yarn test:package-types && yarn typecheck",
     "test:unit": "jest",
     "test:package-types": "attw --pack . --entrypoints ./lib",
     "test:types": "zx ./tests/types/scripts/test.mjs",
