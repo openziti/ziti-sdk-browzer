@@ -13,7 +13,7 @@
     "test:package-types": "attw --pack . --entrypoints ./lib",
     "test:types": "zx ./tests/types/scripts/test.mjs",
     "lint": "eslint '{src,types}/**/*.{ts,js}' && yarn prettier-check",
-    "typecheck": "tsc",
+    "typecheck": "yarn prebuild && tsc",
     "prebuild": "node scripts/prebuild.mjs",
     "build": "yarn clean && yarn prebuild && yarn rollup -c",
     "clean": "rimraf dist",
