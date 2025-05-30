@@ -6,4 +6,4 @@ dist
 .vim
 .vscode/
 .yarn/
-src/buildInfo.js
+src/buildInfo.ts

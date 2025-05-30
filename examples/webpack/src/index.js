@@ -19,6 +19,8 @@ limitations under the License.
  */
 import { createZitiBrowserClient } from '@openziti/ziti-sdk-browser';
 
+import './styles.css';
+
 let zitiBrowserClient;
 let zitiServiceName = 'YOUR_SERVICE_NAME';
 let accessToken     = 'YOUR_ACCESS_TOKEN';
@@ -190,8 +192,7 @@ function addButton(form, { id, label }) {
     logPrefix: 'Curt_Demo', // specify whatever prefix you want
 
     authorizationParams: {
-      controllerHost: controllerHost,
-      controllerPort: 443,
+      controllerHost: controllerHost
     },
   });
 

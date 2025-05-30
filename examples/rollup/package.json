@@ -19,7 +19,7 @@
     ]
   },
   "dependencies": {
-    "@openziti/ziti-sdk-browser": "^0.1.0",
+    "@openziti/ziti-sdk-browser": "^0.3.0",
     "express": "^4.20.0"
   },
   "devDependencies": {
@@ -38,9 +38,5 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^6.2.1"
-  },
-  "resolutions": {
-    "@openziti/ziti-sdk-browser": "portal:/Users/curt/Repos/nf/github/ziti-sdk-browser",
-    "@openziti/ziti-browzer-core": "portal:/Users/curt/Repos/nf/github/ziti-browzer-core"
   }
 }
