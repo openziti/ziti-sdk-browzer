@@ -25,7 +25,7 @@
 
 ---
 
-[![Build](https://github.com/openziti/ziti-sdk-browzer/actions/workflows/build.yml/badge.svg?branch=main)]()
+[![Build](https://github.com/openziti/ziti-sdk-browser/actions/workflows/build.yml/badge.svg?branch=main)]()
 [![Issues](https://img.shields.io/github/issues/openziti/ziti-sdk-browser)]()
 [![npm version](https://badge.fury.io/js/@openziti%2Fziti-sdk-browser.svg)](https://badge.fury.io/js/@openziti%2Fziti-sdk-browser.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -40,21 +40,21 @@
 # ziti-sdk-browser as a CommonJS module or ES module
 
 This package allows
-[ziti-sdk-browzer](https://openziti.io/docs/reference/developer/sdk/) to be
+[ziti-sdk-browser](https://openziti.io/docs/reference/developer/sdk/) to be
 imported as a CommonJS module or ES module.
 
 ## Installation
 
-Use `npm` to install the ziti-sdk-browzer module:
+Use `npm` to install the ziti-sdk-browser module:
 
 ```sh
-npm install @openziti/ziti-sdk-browzer
+npm install @openziti/ziti-sdk-browser
 ```
 
-Or, use `yarn` to install the ziti-sdk-browzer module:
+Or, use `yarn` to install the ziti-sdk-browser module:
 
 ```sh
-yarn add @openziti/ziti-sdk-browzer
+yarn add @openziti/ziti-sdk-browser
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ yarn add @openziti/ziti-sdk-browzer
 ### `createZitiBrowserClient`
 
 This function returns a `Promise` that resolves with a newly created
-`ZitiBrowserClient` object once ziti-sdk-browzer has loaded. If you call
+`ZitiBrowserClient` object once ziti-sdk-browser has loaded. If you call
 `createZitiBrowserClient` in a server environment (e.g. NodeJS) it will resolve
 to `null`.
 
@@ -86,5 +86,5 @@ TypeScript versions >= 4.8.0
 
 ## Documentation
 
-- [ziti-sdk-browzer Docs](https://openziti.io/docs)
+- [ziti-sdk-browser Docs](https://openziti.io/docs)
 
