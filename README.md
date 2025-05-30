@@ -25,8 +25,8 @@
 
 ---
 
-[![Build](https://github.com/openziti/ziti-sdk-browser/workflows/Build/badge.svg?branch=main)]()
-[![Issues](https://img.shields.io/github/issues-raw/openziti/ziti-sdk-browser)]()
+[![Build](https://github.com/openziti/ziti-sdk-browzer/actions/workflows/build.yml/badge.svg?branch=main)]()
+[![Issues](https://img.shields.io/github/issues/openziti/ziti-sdk-browser)]()
 [![npm version](https://badge.fury.io/js/@openziti%2Fziti-sdk-browser.svg)](https://badge.fury.io/js/@openziti%2Fziti-sdk-browser.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![](https://data.jsdelivr.com/v1/package/npm/@openziti/ziti-sdk-browser/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@openziti/ziti-sdk-browser)

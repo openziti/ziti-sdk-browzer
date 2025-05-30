@@ -22,7 +22,6 @@ import {
   // CacheKey,
   CacheManager,
   CacheEntry,
-  // IdTokenEntry,
   CACHE_KEY_ID_TOKEN_SUFFIX,
   DecodedToken,
 } from './cache';
@@ -35,8 +34,6 @@ import {
   ZitiBrowserClientOptions,
   AuthorizationParams,
   CacheLocation,
-  // User,
-  // IdToken,
 } from './global';
 
 import { cacheFactory } from './ZitiBrowserClient.utils';
@@ -73,10 +70,10 @@ export class ZitiBrowserClient {
   private readonly defaultOptions: Partial<ZitiBrowserClientOptions> = {
     logLevel: 'Warn',
 
-    //
+    // set some defaults
     authorizationParams: {
       controllerHost: 'ctrl.ziti.netfoundry.io',
-      controllerPort: 1280,
+      controllerPort: 443,
     },
   };
 
