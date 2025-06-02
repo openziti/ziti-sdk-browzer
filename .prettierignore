@@ -4,3 +4,4 @@ package.json
 src/buildInfo.ts
 README.md
 CHANGELOG.md
+SECURITY.md
