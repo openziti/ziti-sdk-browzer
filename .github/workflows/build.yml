@@ -44,7 +44,7 @@ jobs:
         preset: 'angular'
         tag-prefix: 'v'
         output-file: 'CHANGELOG.md'
-        skip-on-empty: false         # update semver even when we push 'chore: ...' commits
+        skip-on-empty: false         # update semver even when we push 'chore: ...' commits 
         release-count: 0             # ensure changelog is generated to contain ALL updates
         skip-commit: false           # ✅ REQUIRED to allow it to commit changes
         skip-tag: false              # ✅ REQUIRED to allow it to create git tags
