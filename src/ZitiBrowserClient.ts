@@ -68,10 +68,9 @@ export class ZitiBrowserClient {
   };
 
   private readonly defaultOptions: Partial<ZitiBrowserClientOptions> = {
-
     // set some defaults
-    logLevel:   'Info',
-    logPrefix:  'Ziti-SDK-Browser',
+    logLevel: 'Info',
+    logPrefix: 'Ziti-SDK-Browser',
 
     // set some defaults
     authorizationParams: {
@@ -297,7 +296,9 @@ export class ZitiBrowserClient {
     if (!result) {
       this.logger.error(`ephemeral Cert acquisition failed`);
       // If we couldn't acquire a cert, it most likely means that the JWT from the IdP needs a refresh
-      throw new Error(`ephemeral Cert acquisition failed; IdP might not be registered with Ziti`);
+      throw new Error(
+        `ephemeral Cert acquisition failed; IdP might not be registered with Ziti`
+      );
     } else {
       this.logger.info(`ephemeral Cert acquisition succeeded`);
       return result;
