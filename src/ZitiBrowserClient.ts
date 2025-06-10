@@ -68,7 +68,9 @@ export class ZitiBrowserClient {
   };
 
   private readonly defaultOptions: Partial<ZitiBrowserClientOptions> = {
-    logLevel: 'Warn',
+    // set some defaults
+    logLevel: 'Info',
+    logPrefix: 'Ziti-SDK-Browser',
 
     // set some defaults
     authorizationParams: {
@@ -99,6 +101,8 @@ export class ZitiBrowserClient {
       suffix: this.options.logPrefix,
     });
 
+    this.logger.info(`ctor: start`);
+
     this.zitiContext = this.zitiBrowzerCore.createZitiContext({
       logger: this.logger,
       controllerApi: `https://${this.options.authorizationParams.controllerHost}:${this.options.authorizationParams.controllerPort}/edge/client/v1`,
@@ -108,7 +112,7 @@ export class ZitiBrowserClient {
       sdkRevision: buildInfo.sdkRevision,
       token_type: 'Bearer',
     });
-    this.logger.trace(`_initialize: ZitiContext created`);
+    this.logger.info(`ctor: ZitiContext created`);
 
     window._zitiContext = this.zitiContext; // allow WASM to find us
 
@@ -144,7 +148,7 @@ export class ZitiBrowserClient {
       this.nowProvider
     );
 
-    this.logger.trace(`ZitiBrowserClient.ctor completed`);
+    this.logger.info(`ctor: completed`);
   }
 
   private async _initializeZitiContext() {
@@ -290,11 +294,13 @@ export class ZitiBrowserClient {
   private async _enroll(): Promise<object> {
     let result = await this.zitiContext.enroll(); // this acquires an ephemeral Cert
     if (!result) {
-      this.logger.trace(`ephemeral Cert acquisition failed`);
+      this.logger.error(`ephemeral Cert acquisition failed`);
       // If we couldn't acquire a cert, it most likely means that the JWT from the IdP needs a refresh
-      return {};
+      throw new Error(
+        `ephemeral Cert acquisition failed; IdP might not be registered with Ziti`
+      );
     } else {
-      this.logger.trace(`ephemeral Cert acquisition succeeded`);
+      this.logger.info(`ephemeral Cert acquisition succeeded`);
       return result;
     }
   }
