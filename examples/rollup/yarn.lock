@@ -1476,12 +1476,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openziti/ziti-sdk-browser@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@openziti/ziti-sdk-browser@npm:0.2.0"
+"@openziti/ziti-sdk-browser@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@openziti/ziti-sdk-browser@npm:0.3.0"
   dependencies:
     "@openziti/ziti-browzer-core": "npm:^0.65.0"
-  checksum: 3af0e54cd81c820cfa4f27c64e6a851c5799f8e6cfb3f254be3d3a80f96267360fc10c337193405f81d65ac90933b69ef5d8b082d72e590a5005f51cd39b1ab3
+  checksum: 8f96f29fc8ecfe734b0e6ec982ff7402e0d6251c8006208e6e7e8401d051662b12cbb3ccde2aa02e1ba27dc2e8acc261449bb0915ca8ee919adf77e343d51963
   languageName: node
   linkType: hard
 
@@ -2060,12 +2060,12 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.11
-  resolution: "brace-expansion@npm:1.1.11"
+  version: 1.1.12
+  resolution: "brace-expansion@npm:1.1.12"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: 695a56cd058096a7cb71fb09d9d6a7070113c7be516699ed361317aca2ec169f618e28b8af352e02ab4233fb54eb0168460a40dc320bab0034b36ab59aaad668
+  checksum: 975fecac2bb7758c062c20d0b3b6288c7cc895219ee25f0a64a9de662dbac981ff0b6e89909c3897c1f84fa353113a721923afdec5f8b2350255b097f12b1f73
   languageName: node
   linkType: hard
 
@@ -4898,7 +4898,7 @@ __metadata:
     "@babel/plugin-transform-runtime": "npm:^7.7.6"
     "@babel/preset-env": "npm:^7.27.2"
     "@babel/runtime": "npm:^7.27.1"
-    "@openziti/ziti-sdk-browser": "npm:^0.2.0"
+    "@openziti/ziti-sdk-browser": "npm:^0.3.0"
     "@rollup/plugin-babel": "npm:^6.0.4"
     "@rollup/plugin-commonjs": "npm:^11.0.0"
     "@rollup/plugin-node-resolve": "npm:^16.0.1"
