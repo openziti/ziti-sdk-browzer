@@ -119,8 +119,12 @@ export class ZitiBrowserClient {
     this.zitiContext.setKeyTypeEC();
     this.zitiContext.createEnroller();
 
-    this.zitiContext.setCurrentAPISession({token: this.options.authorizationParams.apiSessionToken});
-    this.logger.info(`apiSessionToken now set to [${this.options.authorizationParams.apiSessionToken}]`);
+    this.zitiContext.setCurrentAPISession({
+      token: this.options.authorizationParams.apiSessionToken,
+    });
+    this.logger.info(
+      `apiSessionToken now set to [${this.options.authorizationParams.apiSessionToken}]`
+    );
 
     let cacheLocation: CacheLocation | undefined;
     let cache: ICache;
@@ -297,9 +301,13 @@ export class ZitiBrowserClient {
     return this.zitiContext.setAccessToken(token);
   }
 
-  private _setAPISessionToken(token: string): void { 
-    this.zitiContext.setCurrentAPISession({token: this.options.authorizationParams.apiSessionToken});
-    this.logger.info(`apiSessionToken now set to [${this.options.authorizationParams.apiSessionToken}]`);
+  private _setAPISessionToken(token: string): void {
+    this.zitiContext.setCurrentAPISession({
+      token: this.options.authorizationParams.apiSessionToken,
+    });
+    this.logger.info(
+      `apiSessionToken now set to [${this.options.authorizationParams.apiSessionToken}]`
+    );
   }
 
   private _getFreshAPISession(): boolean {

@@ -36,7 +36,6 @@ export interface AuthorizationParams {
    *
    */
   apiSessionToken?: string;
-
 }
 
 interface BaseLoginOptions {
