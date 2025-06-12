@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.10.0...v0.11.0) (2025-06-12)
+
+
+### Features
+
+* apiSessionToken support ([#15](https://github.com/openziti/ziti-sdk-browser/issues/15)) ([38f0dd8](https://github.com/openziti/ziti-sdk-browser/commit/38f0dd87f9b6a8bc96fef7cf538ee1210471f170))
+
+
+
 # [0.10.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.9.2...v0.10.0) (2025-06-10)
 
 
