@@ -119,6 +119,9 @@ export class ZitiBrowserClient {
     this.zitiContext.setKeyTypeEC();
     this.zitiContext.createEnroller();
 
+    this.zitiContext.setCurrentAPISession({token: this.options.authorizationParams.apiSessionToken});
+    this.logger.info(`apiSessionToken now set to [${this.options.authorizationParams.apiSessionToken}]`);
+
     let cacheLocation: CacheLocation | undefined;
     let cache: ICache;
 
@@ -170,6 +173,17 @@ export class ZitiBrowserClient {
    */
   public setAccessToken(token: string): boolean {
     return this._setAccessToken(token);
+  }
+
+  /**
+   * ```js
+   * const result = zitiBrowserClient.setAPISessionToken();
+   * ```
+   *
+   * Set the zt-session token to be used to make REST calls to the Ziti Controller.
+   */
+  public setAPISessionToken(token: string): void {
+    this._setAPISessionToken(token);
   }
 
   /**
@@ -281,6 +295,11 @@ export class ZitiBrowserClient {
 
   private _setAccessToken(token: string): boolean {
     return this.zitiContext.setAccessToken(token);
+  }
+
+  private _setAPISessionToken(token: string): void { 
+    this.zitiContext.setCurrentAPISession({token: this.options.authorizationParams.apiSessionToken});
+    this.logger.info(`apiSessionToken now set to [${this.options.authorizationParams.apiSessionToken}]`);
   }
 
   private _getFreshAPISession(): boolean {

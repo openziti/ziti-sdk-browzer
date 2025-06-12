@@ -31,6 +31,12 @@ export interface AuthorizationParams {
    *    The JWT (id_token or access-token) to be used to authenticate with the Ziti Controller.
    */
   accessToken?: string;
+
+  /**
+   *
+   */
+  apiSessionToken?: string;
+
 }
 
 interface BaseLoginOptions {
