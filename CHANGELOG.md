@@ -1,3 +1,12 @@
+# [0.12.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.11.0...v0.12.0) (2025-06-30)
+
+
+### Features
+
+* bump-to-core-0.66.0 ([#16](https://github.com/openziti/ziti-sdk-browser/issues/16)) ([1d24df0](https://github.com/openziti/ziti-sdk-browser/commit/1d24df0f043280b93af5bd443db422b817cf9fd4))
+
+
+
 # [0.11.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.10.0...v0.11.0) (2025-06-12)
 
 
