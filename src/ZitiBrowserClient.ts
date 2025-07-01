@@ -19,7 +19,6 @@ import { ZitiBrowzerCore } from '@openziti/ziti-browzer-core';
 import {
   InMemoryCache,
   ICache,
-  // CacheKey,
   CacheManager,
   CacheEntry,
   CACHE_KEY_ID_TOKEN_SUFFIX,
@@ -69,7 +68,7 @@ export class ZitiBrowserClient {
 
   private readonly defaultOptions: Partial<ZitiBrowserClientOptions> = {
     // set some defaults
-    logLevel: 'Info',
+    logLevel: 'warn',
     logPrefix: 'Ziti-SDK-Browser',
 
     // set some defaults
@@ -78,6 +77,12 @@ export class ZitiBrowserClient {
       controllerPort: 443,
     },
   };
+
+  /**
+   *  To support the ZitiBrowserClient.ready property
+   */
+  private _readyPromise: Promise<void>;
+  private _resolveReady!: () => void;
 
   /**
    * ZitiBrowserClient ctor
@@ -93,6 +98,10 @@ export class ZitiBrowserClient {
         ...options.authorizationParams,
       },
     };
+
+    this._readyPromise = new Promise<void>((resolve) => {
+      this._resolveReady = resolve;
+    });
 
     this.zitiBrowzerCore = new ZitiBrowzerCore({});
 
@@ -156,6 +165,14 @@ export class ZitiBrowserClient {
     );
 
     this.logger.info(`ctor: completed`);
+
+    setTimeout(
+      async (self) => {
+        self._ready();
+      },
+      10,
+      this
+    );
   }
 
   private async _initializeZitiContext() {
@@ -167,6 +184,52 @@ export class ZitiBrowserClient {
   /** -----------------------------------------------------------
    * PUBLIC APIs
    *  ----------------------------------------------------------*/
+
+  /**
+   * ```js
+   * zitiBrowserClient.ready;
+   * ```
+   *
+   *  Do not return/resolve until the SDK is fully initialized
+   */
+  public get ready(): Promise<void> {
+    return this._readyPromise;
+  }
+
+  private async _ready() {
+    async function zitiBrowserClientInit(zitiBrowserClient: ZitiBrowserClient) {
+      let result = await zitiBrowserClient._init();
+      if (!result) {
+        throw new Error('zitiBrowserClient was not correctly initialized.');
+      }
+    }
+
+    /* Test to make sure everything works. */
+    try {
+      await zitiBrowserClientInit(this);
+    } catch (err) {
+      throw new Error('zitiBrowserClient failed to load:' + err);
+    }
+
+    this._resolveReady();
+  }
+
+  private async _init(): Promise<boolean> {
+    // Load the WebAssembly (for various PKI and TLS functionality)
+    try {
+      await this.getWASMInstance();
+    } catch (e) {
+      throw new Error('WebAssembly load/init failed');
+    }
+
+    try {
+      let result = await this.enroll();
+    } catch (err) {
+      throw new Error('ephemeral Cert acquisition failed');
+    }
+
+    return true;
+  }
 
   /**
    * ```js

@@ -32,8 +32,8 @@ export * from './global';
  * @param options The ZitiBrowserClient options
  * @returns An instance of ZitiBrowserClient
  */
-export async function createZitiBrowserClient(
+export function createZitiBrowserClient(
   options: ZitiBrowserClientOptions
-): Promise<ZitiBrowserClient> {
+): ZitiBrowserClient {
   return new ZitiBrowserClient(options);
 }
