@@ -68,8 +68,8 @@ export class ZitiBrowserClient {
 
   private readonly defaultOptions: Partial<ZitiBrowserClientOptions> = {
     // set some defaults
-    logLevel:   'warn',
-    logPrefix:  'Ziti-SDK-Browser',
+    logLevel: 'warn',
+    logPrefix: 'Ziti-SDK-Browser',
 
     // set some defaults
     authorizationParams: {
@@ -166,10 +166,13 @@ export class ZitiBrowserClient {
 
     this.logger.info(`ctor: completed`);
 
-    setTimeout( async (self) => {
-      self._ready();
-    }, 10, this)
-
+    setTimeout(
+      async (self) => {
+        self._ready();
+      },
+      10,
+      this
+    );
   }
 
   private async _initializeZitiContext() {
@@ -194,45 +197,39 @@ export class ZitiBrowserClient {
   }
 
   private async _ready() {
-
     async function zitiBrowserClientInit(zitiBrowserClient: ZitiBrowserClient) {
       let result = await zitiBrowserClient._init();
       if (!result) {
-        throw new Error("zitiBrowserClient was not correctly initialized.");
+        throw new Error('zitiBrowserClient was not correctly initialized.');
       }
     }
 
     /* Test to make sure everything works. */
     try {
-      await zitiBrowserClientInit( this );
-    }
-    catch (err) { 
-      throw new Error("zitiBrowserClient failed to load:" + err)
+      await zitiBrowserClientInit(this);
+    } catch (err) {
+      throw new Error('zitiBrowserClient failed to load:' + err);
     }
 
     this._resolveReady();
   }
 
   private async _init(): Promise<boolean> {
-
     // Load the WebAssembly (for various PKI and TLS functionality)
     try {
       await this.getWASMInstance();
-    }
-    catch (e) {
-      throw new Error("WebAssembly load/init failed")
+    } catch (e) {
+      throw new Error('WebAssembly load/init failed');
     }
 
     try {
       let result = await this.enroll();
-    }
-    catch (err) { 
-      throw new Error("ephemeral Cert acquisition failed")
+    } catch (err) {
+      throw new Error('ephemeral Cert acquisition failed');
     }
 
     return true;
   }
-
 
   /**
    * ```js
