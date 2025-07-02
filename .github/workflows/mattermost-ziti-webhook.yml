@@ -1,4 +1,6 @@
 name: mattermost-ziti-webhook
+permissions:
+  contents: read
 on: 
   create:
   delete:
