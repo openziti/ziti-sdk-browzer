@@ -38,6 +38,7 @@
     "@arethetypeswrong/cli": "^0.18.1",
     "@babel/core": "^7.27.3",
     "@babel/preset-env": "^7.27.2",
+    "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-replace": "^2.3.1",
