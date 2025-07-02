@@ -1,3 +1,12 @@
+# [0.15.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.14.0...v0.15.0) (2025-07-02)
+
+
+### Features
+
+* add ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE emissions ([#19](https://github.com/openziti/ziti-sdk-browser/issues/19)) ([0397892](https://github.com/openziti/ziti-sdk-browser/commit/03978924e632bec3fa5f9e2311085ab41d668477))
+
+
+
 # [0.14.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.13.0...v0.14.0) (2025-07-02)
 
 
