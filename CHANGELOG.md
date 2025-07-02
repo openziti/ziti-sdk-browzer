@@ -1,3 +1,12 @@
+# [0.14.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.13.0...v0.14.0) (2025-07-02)
+
+
+### Features
+
+* add ziti webhook to CI ([#18](https://github.com/openziti/ziti-sdk-browser/issues/18)) ([70e7906](https://github.com/openziti/ziti-sdk-browser/commit/70e790687c6c4062d90a8e5d0c4a4c2d253bcd77))
+
+
+
 # [0.13.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.12.0...v0.13.0) (2025-07-01)
 
 
