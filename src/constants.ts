@@ -37,6 +37,9 @@ export const DEFAULT_FETCH_TIMEOUT_MS = 10000;
 export const CACHE_LOCATION_MEMORY = 'memory';
 export const CACHE_LOCATION_LOCAL_STORAGE = 'localstorage';
 
+export const ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE =
+  'zitiBrowserClientNoServiceEvent';
+
 /**
  * @ignore
  */
