@@ -4,6 +4,7 @@ import typescript from '@rollup/plugin-typescript';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import json from '@rollup/plugin-json';
+import commonjs from '@rollup/plugin-commonjs';
 
 import pkg from './package.json';
 
@@ -34,6 +35,7 @@ const PLUGINS = [
     _VERSION: JSON.stringify(pkg.version),
     preventAssignment: true,
   }),
+  commonjs(), // <-- allows importing CommonJS modules like `events`
 ];
 
 export default [

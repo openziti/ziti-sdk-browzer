@@ -19,6 +19,7 @@ import { ZitiBrowserClient } from './ZitiBrowserClient';
 
 import './global';
 export * from './global';
+export * from './constants';
 
 /**
  * ```js

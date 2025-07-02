@@ -14,7 +14,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { ZitiBrowzerCore } from '@openziti/ziti-browzer-core';
+import { 
+  ZitiBrowzerCore, 
+  ZITI_CONSTANTS,
+} from '@openziti/ziti-browzer-core';
+
+import EventEmitter from 'events';
+
 
 import {
   InMemoryCache,
@@ -27,7 +33,7 @@ import {
 
 import { CacheKeyManifest } from './cache/key-manifest';
 
-import { CACHE_LOCATION_MEMORY, DEFAULT_NOW_PROVIDER } from './constants';
+import { CACHE_LOCATION_MEMORY, DEFAULT_NOW_PROVIDER, ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE } from './constants';
 
 import {
   ZitiBrowserClientOptions,
@@ -51,7 +57,7 @@ declare global {
  *
  * This is the main class that Web Applications should interface with
  */
-export class ZitiBrowserClient {
+export class ZitiBrowserClient extends EventEmitter {
   private readonly cacheManager: CacheManager;
   private readonly nowProvider: () => number | Promise<number>;
   private readonly zitiBrowzerCore: ZitiBrowzerCore;
@@ -90,6 +96,9 @@ export class ZitiBrowserClient {
    * @param options
    */
   constructor(options: ZitiBrowserClientOptions) {
+
+    super();
+
     this.options = {
       ...this.defaultOptions,
       ...options,
@@ -222,13 +231,22 @@ export class ZitiBrowserClient {
       throw new Error('WebAssembly load/init failed');
     }
 
+    // Obtain the ephemeral x509 cert used with mTLS to edge router
     try {
       let result = await this.enroll();
     } catch (err) {
       throw new Error('ephemeral Cert acquisition failed');
     }
 
+    // Set up handlers for certain browZer core events
+    this.zitiContext.on(ZITI_CONSTANTS.ZITI_EVENT_NO_SERVICE, this._noServiceEventHandler);
+
     return true;
+  }
+
+  // Propagate the event out to our listeners
+  private _noServiceEventHandler = (noServiceEvent: any) => {
+    this.emit(ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE, noServiceEvent);
   }
 
   /**
