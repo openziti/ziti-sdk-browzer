@@ -14,13 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { 
-  ZitiBrowzerCore, 
-  ZITI_CONSTANTS,
-} from '@openziti/ziti-browzer-core';
+import { ZitiBrowzerCore, ZITI_CONSTANTS } from '@openziti/ziti-browzer-core';
 
 import EventEmitter from 'events';
-
 
 import {
   InMemoryCache,
@@ -33,7 +29,11 @@ import {
 
 import { CacheKeyManifest } from './cache/key-manifest';
 
-import { CACHE_LOCATION_MEMORY, DEFAULT_NOW_PROVIDER, ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE } from './constants';
+import {
+  CACHE_LOCATION_MEMORY,
+  DEFAULT_NOW_PROVIDER,
+  ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE,
+} from './constants';
 
 import {
   ZitiBrowserClientOptions,
@@ -96,7 +96,6 @@ export class ZitiBrowserClient extends EventEmitter {
    * @param options
    */
   constructor(options: ZitiBrowserClientOptions) {
-
     super();
 
     this.options = {
@@ -239,7 +238,10 @@ export class ZitiBrowserClient extends EventEmitter {
     }
 
     // Set up handlers for certain browZer core events
-    this.zitiContext.on(ZITI_CONSTANTS.ZITI_EVENT_NO_SERVICE, this._noServiceEventHandler);
+    this.zitiContext.on(
+      ZITI_CONSTANTS.ZITI_EVENT_NO_SERVICE,
+      this._noServiceEventHandler
+    );
 
     return true;
   }
@@ -247,7 +249,7 @@ export class ZitiBrowserClient extends EventEmitter {
   // Propagate the event out to our listeners
   private _noServiceEventHandler = (noServiceEvent: any) => {
     this.emit(ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE, noServiceEvent);
-  }
+  };
 
   /**
    * ```js
