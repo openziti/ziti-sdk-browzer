@@ -1,3 +1,12 @@
+# [0.16.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.15.0...v0.16.0) (2025-07-03)
+
+
+### Features
+
+* add ZITI_BROWSER_CLIENT_EVENT_NO_CONFIG_FOR_HOSTNAME emissions ([#20](https://github.com/openziti/ziti-sdk-browser/issues/20)) ([4d861d4](https://github.com/openziti/ziti-sdk-browser/commit/4d861d4687a430dbb2e50ce5d16feed6f415ebce))
+
+
+
 # [0.15.0](https://github.com/openziti/ziti-sdk-browser/compare/v0.14.0...v0.15.0) (2025-07-02)
 
 
