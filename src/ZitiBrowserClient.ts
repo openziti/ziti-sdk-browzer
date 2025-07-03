@@ -33,6 +33,8 @@ import {
   CACHE_LOCATION_MEMORY,
   DEFAULT_NOW_PROVIDER,
   ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE,
+  ZITI_BROWSER_CLIENT_EVENT_NO_CONFIG_FOR_HOSTNAME,
+  ZITI_BROWSER_CLIENT_EVENT_SESSION_CREATION_ERROR,
 } from './constants';
 
 import {
@@ -242,6 +244,14 @@ export class ZitiBrowserClient extends EventEmitter {
       ZITI_CONSTANTS.ZITI_EVENT_NO_SERVICE,
       this._noServiceEventHandler
     );
+    this.zitiContext.on(
+      ZITI_CONSTANTS.ZITI_EVENT_NO_CONFIG_FOR_HOSTNAME,
+      this._noConfigForHostnameEventHandler
+    );
+    this.zitiContext.on(
+      ZITI_CONSTANTS.ZITI_EVENT_SESSION_CREATION_ERROR,
+      this._sessionCreationErrorEventHandler
+    );
 
     return true;
   }
@@ -249,6 +259,17 @@ export class ZitiBrowserClient extends EventEmitter {
   // Propagate the event out to our listeners
   private _noServiceEventHandler = (noServiceEvent: any) => {
     this.emit(ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE, noServiceEvent);
+  };
+  private _noConfigForHostnameEventHandler = (
+    noConfigForHostnameEvent: any
+  ) => {
+    this.emit(
+      ZITI_BROWSER_CLIENT_EVENT_NO_CONFIG_FOR_HOSTNAME,
+      noConfigForHostnameEvent
+    );
+  };
+  private _sessionCreationErrorEventHandler = (noSessionEvent: any) => {
+    this.emit(ZITI_BROWSER_CLIENT_EVENT_SESSION_CREATION_ERROR, noSessionEvent);
   };
 
   /**
