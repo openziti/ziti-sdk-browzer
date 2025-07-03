@@ -40,6 +40,12 @@ export const CACHE_LOCATION_LOCAL_STORAGE = 'localstorage';
 export const ZITI_BROWSER_CLIENT_EVENT_NO_SERVICE =
   'zitiBrowserClientNoServiceEvent';
 
+export const ZITI_BROWSER_CLIENT_EVENT_NO_CONFIG_FOR_HOSTNAME =
+  'zitiBrowserClientNoConfigForHostnameEvent';
+
+export const ZITI_BROWSER_CLIENT_EVENT_SESSION_CREATION_ERROR =
+  'zitiBrowserClientSessionCreationErrorEvent';
+
 /**
  * @ignore
  */
